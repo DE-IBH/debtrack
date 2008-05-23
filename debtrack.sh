@@ -37,10 +37,10 @@ if [ -z "$yn" -o "$yn" = "y" -o "$yn" = "Y" ]; then
  if [ -z "$stmt" ]; then
   stmt="Regular security update"
  fi
- echo -n "Mail destination? [debtrack]: "
+ echo -n "Mail destination? [$MDST]: "
  read mdst
  if [ -z "$mdst" ]; then
-  mdst="debtrack"
+  mdst="$MDST"
  fi
  echo "Posting report from $mname to $mdst..."
  (

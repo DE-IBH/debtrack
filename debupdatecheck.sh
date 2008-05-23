@@ -11,8 +11,8 @@
 
 . /etc/debtrack.conf
 
-LOG="$LIB/debupdchk.$$.log"
-UPG="$LIB/debupdchk.$$.dat"
+LOG="$VAR/debupdchk.$$.log"
+UPG="$VAR/debupdchk.$$.dat"
 
 exec > "$LOG" 2>&1
 
@@ -26,7 +26,7 @@ if grep "Inst" "$UPG" > /dev/null ; then
  echo "Upgraded Packages:"
  awk '$1 ~ /Inst/ {printf " %-20s %20s --> %s)\n", $2, $3, $4}' < $UPG
 
- if [ "$DOWNLOAD" = "yes" ]; then
+ if [ "$DOWNLOAD" = "true" ]; then
   echo ""
   echo "Starting background download at `date +'%Y-%m-%d %H:%M:%S'`"
   apt-get -qq -y -d upgrade

@@ -9,3 +9,9 @@ Type: string
 Default: debtrack
 Description: Destination of debtrack mails.
  Specify mail adresses which should receive debtrack mails.
+
+Template: debtrack/apt
+Type: boolean
+Default: true
+Description: Use apt hooks?
+ Should debtrack run after installing packages with apt automaticly?

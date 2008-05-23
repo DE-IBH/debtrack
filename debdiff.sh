@@ -8,8 +8,8 @@
 
 . /etc/debtrack.conf
 
-if [ -d "$LIB" ]; then
- lcp=`ls "$LIB/"*.dcp | tail -1`
+if [ -d "$VAR" ]; then
+ lcp=`ls "$VAR/"*.dcp | tail -1`
 fi
 
 if [ -z "$lcp" ]; then
