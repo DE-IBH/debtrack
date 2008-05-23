@@ -3,7 +3,7 @@ clean:
 
 install:
 	mkdir -p $(DESTDIR)/usr/lib/debtrack
-	for i in debcheckpoint.sh debdiff.sh debupdatecheck.sh kernelinfo.sh show-tech-support.sh debtrack.sh; do \
+	for i in debcheckpoint.sh debdiff.sh debupdatecheck.sh kernelinfo.sh show-tech-support.sh debtrack.sh apthook.sh; do \
 	    cp "$$i" $(DESTDIR)/usr/lib/debtrack; \
 	done
 	

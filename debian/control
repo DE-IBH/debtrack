@@ -1,12 +1,22 @@
 Source: debtrack
 Section: admin
 Priority: extra
-Maintainer: IBH IT-Service GmbH <support@ibh.de>
+Maintainer: Thomas Liske <liske@ibh.de>
 Build-Depends: debhelper (>= 5)
 Standards-Version: 3.7.2
 
 Package: debtrack
 Architecture: all
-Depends: debconf (>= 0.5) | debconf-2.0, adduser, pciutils, mailx
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Depends: debconf (>= 0.5) | debconf-2.0, adduser, pciutils, mailx, gawk
+Description: Debian package update tracking
+ The debtrack tool can save the current package installation information
+ (essentially that is what "dpkg -l" lists) in a dated checkpoint file
+ and later diff the current installation against the last checkpoint.
+ .
+ It tells you what debdiff currently thinks about the system, i.e. if
+ there are any changes to the latest checkpoint and what they are.
+ It allows you to post a report (that means sending a mail) to some
+ recipient.
+ .
+ In addition it checks daily for new updates and (optional)
+ downloads them.
