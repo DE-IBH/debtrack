@@ -1,0 +1,11 @@
+Template: debtrack/download
+Type: boolean
+Default: true
+Description: Download updates by cron.
+ Should updates be downloaded by cron automaticly?
+
+Template: debtrack/mdst
+Type: string
+Default: debtrack
+Description: Destination of debtrack mails.
+ Specify mail adresses which should receive debtrack mails.

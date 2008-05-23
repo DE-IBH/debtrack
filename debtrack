@@ -1,25 +1,29 @@
 #!/bin/sh
 #
-# $Id: debtrack,v 1.3 2007/04/19 09:38:01 beck Exp $
+# $Id$
 #
 # Debian package installation tracking - framework
 #
 
-d=$HOME/debtrack
-fqdn=`hostname -f`
+. /etc/debtrack.conf
 
-echo "ABPSoft Debian Package Tracker v0.02"
+echo "ABPSoft Debian Package Tracker v0.03"
 echo ""
 
-if [ ! -d $d ]; then
- echo "No debtrack directory $d - bailing out."
+if [ ! -d "$BIN" ]; then
+ echo "No debtrack directory $BIN - bailing out."
+ exit 1
+fi
+
+if [ ! -d "$VAR" ]; then
+ echo "No debtrack directory $VAR - bailing out."
  exit 1
 fi
 
 echo "What debdiff thinks about this system:"
 echo "-------------------------------------------------------------------------"
 
-$d/debdiff.sh
+"$BIN/debdiff.sh"
 
 echo "-------------------------------------------------------------------------"
 echo -n "Post a report? [Y/n]: "
@@ -40,23 +44,22 @@ if [ -z "$yn" -o "$yn" = "y" -o "$yn" = "Y" ]; then
  fi
  echo "Posting report from $mname to $mdst..."
  (
-  echo "Host: $fqdn"
+  echo "Host: $HOST"
   echo -n "Date: "
   date +"%Y-%m-%d %H:%M:%S"
   echo "Maintainer: $mname"
   echo "Statement: $stmt"
   echo ""
-  $d/debdiff.sh
-  if [ -x $d/show-tech-support.sh ]; then
-   $d/show-tech-support.sh
+  "$BIN/debdiff.sh"
+  if [ -x "$BIN/show-tech-support.sh" ]; then
+   "$BIN/show-tech-support.sh"
   fi
- ) | mail -s "debtrack report for $fqdn" $mdst
+ ) | mail -s "debtrack report for $HOST" $mdst
 fi
 
 echo -n "Update checkpoint now? [Y/n]: "
 read yn
 
 if [ -z "$yn" -o "$yn" = "y" -o "$yn" = "Y" ]; then
- $d/debcheckpoint.sh
+ "$BIN/debcheckpoint.sh"
 fi
-

@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $Id: debupdatecheck.sh,v 1.2 2007/02/26 16:03:26 beck Exp $
+# $Id$
 #
 # Silently and automatically
 # * Do an apt-get update
@@ -9,22 +9,20 @@
 # * Send a mail if there is anything new
 #
 
-HOST=`hostname -f`
-DATE=`date +'%Y-%m-%d %H:%M:%S'`
-MDST="debtrack"
-DOWNLOAD="yes"
-LOG="/tmp/debupdchk.$$.log"
-UPG="/tmp/debupdchk.$$.dat"
+. /etc/debtrack.conf
 
-exec > $LOG 2>&1
+LOG="$LIB/debupdchk.$$.log"
+UPG="$LIB/debupdchk.$$.dat"
+
+exec > "$LOG" 2>&1
 
 # First update package information
 apt-get -qq update
 
 # Now check for upgraded packages
-apt-get -qq -s upgrade > $UPG
+apt-get -qq -s upgrade > "$UPG"
 
-if grep "Inst" $UPG > /dev/null ; then
+if grep "Inst" "$UPG" > /dev/null ; then
  echo "Upgraded Packages:"
  awk '$1 ~ /Inst/ {printf " %-20s %20s --> %s)\n", $2, $3, $4}' < $UPG
 
@@ -37,18 +35,18 @@ if grep "Inst" $UPG > /dev/null ; then
 fi
 
 # Aything to send?
-if [ -s $LOG ] ; then
+if [ -s "$LOG" ] ; then
  (
   echo "DebTrack AutoUpdate Notification for $HOST $DATE"
   echo ""
   echo "`grep "Inst" $UPG | wc -l` upgrades pending:"
   echo ""
-  cat $LOG
+  cat "$LOG"
   echo ""
- ) | mail -s "NOTIFY: $HOST updates pending" $MDST
+ ) | mail -s "NOTIFY: $HOST updates pending" "$MDST"
 fi
 
-rm -f $LOG
-rm -f $UPG
+rm -f "$LOG"
+rm -f "$UPG"
 
 exit 0

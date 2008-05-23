@@ -1,0 +1,10 @@
+#!/bin/sh 
+set -e
+
+. /usr/share/debconf/confmodule
+
+db_version 2.0
+
+db_input low debtrack/download || true
+db_input high debtrack/mdst || true
+db_go || true

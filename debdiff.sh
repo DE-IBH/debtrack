@@ -1,13 +1,15 @@
 #!/bin/sh
 #
-# $Id: debdiff.sh,v 1.1 2002/06/27 12:51:49 beck Exp $
+# $Id$
 #
 # Generate a CSV listing of the installed packages and diff it
 # against the latest known checkpoint
 #
 
-if [ -d $HOME/debtrack/cp ]; then
- lcp=`ls $HOME/debtrack/cp/*.dcp | tail -1`
+. /etc/debtrack.conf
+
+if [ -d "$LIB" ]; then
+ lcp=`ls "$LIB/"*.dcp | tail -1`
 fi
 
 if [ -z "$lcp" ]; then
