@@ -1,0 +1,56 @@
+
+Using debtrack Debian package update tracking on FlashPenguin
+
+The debtrack tool can save the current package installation information
+(essentially that is what "dpkg -l" lists) in a dated checkpoint file
+and later diff the current installation against the last checkpoint.
+Furthermore, there is a script debtrack supplied as a framework, which
+leads you through the typical tasks:
+
+ 1) It tells you what debdiff currently thinks about the system, i.e. if
+    there are any changes to the latest checkpoint and what they are.
+
+ 2) It allows you to post a report (that means sending a mail) to some
+    recipient. You should add a local alias "debtrack" which distributes
+    to all intended targets. Please enter your (short) name and some
+    useful statement about the report. There is no default name, the
+    default statement is "Regular security update" and the default
+    recipient is "debtrack".
+
+ 3) It finally asks whether to create a new checkpoint.
+
+The current best practice of debtrack installation is in the root user's
+home directory, aka /root.
+
+Typically you would go to a customers box (log in as ibh, su to root and
+cd to go home), do
+
+# debtrack/debdiff.sh
+
+to check whether any changes happened since the last visit and deal with
+them (might be leftovers from a former maintenance, or maybe even the
+customer did some package installation of its own). If things are clean,
+you do whatever maintenance tasks are to do and finally (as ibh) run
+
+# debtrack/debtrack
+
+to get a report of all changes.
+
+The local debtrack alias should point to a collection address at IBH
+(intented is debtrack@ibh.de) and as much other users as are interested
+in the information (at least the customers tech contact should be there).
+
+A new tool supplied with debtrack 0.02 is the debupdatecheck.sh script
+which is supposed to run from cron once a day. It will check whether there
+are any outstanding updates, generate a mail to the debtrack alias if this
+is the case and it can optionally download the packages that make up the
+update. This option defaults to on. You must schedule the script for daily
+execution yourself using crontab(8), the proposed time to run it is between
+02:00 and 04:00. Stagger the actual minute so significant downloads don't
+turn up all at once. An example crontab entry would be
+
+42 2 * * * /root/debtrack/debupdatecheck.sh
+
+To change the behavior of the script, edit it.
+
+ABPSoft
