@@ -21,8 +21,8 @@ case "$1" in
 	chown -R debtrack:debtrack /var/lib/debtrack
 
 	# configure
-	db_get debtrack/download
-	DOWNLOAD="$RET"
+#	db_get debtrack/download
+	DOWNLOAD="false"
 
 	db_get debtrack/mdst
 	MDST="$RET"

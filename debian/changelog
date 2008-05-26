@@ -1,3 +1,9 @@
+debtrack (0.03-2) unstable; urgency=low
+
+  * Disable download mechanism - won't work w/o being root.
+
+ -- Thomas Liske <liske@ibh.de>  Fri, 23 May 2008 08:38:39 +0200
+
 debtrack (0.03-1) unstable; urgency=low
 
   * Initial Release.
