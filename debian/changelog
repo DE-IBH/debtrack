@@ -1,3 +1,9 @@
+debtrack (0.03-3) unstable; urgency=low
+
+  * Fixed postrm script blaming out.
+
+ -- Thomas Liske <liske@ibh.de>  Tue, 27 May 2008 11:33:28 +0200
+
 debtrack (0.03-2) unstable; urgency=low
 
   * Disable download mechanism - won't work w/o being root.
