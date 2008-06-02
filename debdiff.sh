@@ -41,27 +41,42 @@ END {
  }
 
  # Get all purged
+ purged = 0
  for(pkg in oldstatus) {
   if(newstatus[pkg] == "") {
+   purged += 1
    printf "%-32.32s PURGED  (%s)\n", pkg, oldversion[pkg];
   }
  }
 
  # Get all added
+ added = 0
  for(pkg in newstatus) {
   if(oldstatus[pkg] == "") {
+   added += 1
    printf "%-32.32s ADDED   (%s)\n", pkg, newversion[pkg];
   }
  }
 
  # Get all changed
+ state = 0
+ version = 0
  for(pkg in newstatus) {
   if(oldstatus[pkg] != "" && oldstatus[pkg] != newstatus[pkg] && newstatus[pkg] != "") {
+   state += 1
    printf "%-32.32s STATUS  %s --> %s\n", pkg, oldstatus[pkg], newstatus[pkg];
   }
   if(oldversion[pkg] != "" && oldversion[pkg] != newversion[pkg] && newversion[pkg] != "") {
+   version += 1
    printf "%-32.32s VERSION %s --> %s\n", pkg, oldversion[pkg], newversion[pkg];
   }
  }
+
+ printf "\nPackage statistic:\n\t%d purged\n\t%d added\n\t%d changed state\n\t%d changed version\n\n", purged, added, state, version;
+ 
+ if (purged == 0 && added == 0 && state == 0 && version == 0)
+    exit 255
+
+ exit 0
 }
 '

@@ -23,7 +23,7 @@ fi
 echo "What debdiff thinks about this system:"
 echo "-------------------------------------------------------------------------"
 
-"$BIN/debdiff.sh"
+"$BIN/debdiff.sh" || exit
 
 echo "-------------------------------------------------------------------------"
 echo -n "Post a report? [Y/n]: "
