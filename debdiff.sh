@@ -78,6 +78,10 @@ END {
    printf "%-32.32s VERSION %s --> %s\n", pkg, oldversion[pkg], newversion[pkg];
   }
  }
+
+ if (purged == 0 && added == 0 && state == 0 && version == 0) {
+  printf "No packages have changed.\n"
+ }
  
  printf "\nPackage statistic:\n\t%d installed\n\t%d purged\n\t%d added\n\t%d changed state\n\t%d changed version\n\n", installed, purged, added, state, version;
  
