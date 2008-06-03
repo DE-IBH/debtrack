@@ -24,9 +24,16 @@ echo "Debian package changes as of $d - last checkpoint $ld"
 echo ""
  
 COLUMNS=400 dpkg -l | gawk -v lcp=$lcp '
+BEGIN {
+ installed = 0;
+}
 p == 1 {
  newstatus[$2] = $1;
  newversion[$2] = $3;
+
+ if($1 == "ii") {
+  installed++;
+ }
 }
 /====/ {p=1;}
 END {
@@ -71,8 +78,8 @@ END {
    printf "%-32.32s VERSION %s --> %s\n", pkg, oldversion[pkg], newversion[pkg];
   }
  }
-
- printf "\nPackage statistic:\n\t%d purged\n\t%d added\n\t%d changed state\n\t%d changed version\n\n", purged, added, state, version;
+ 
+ printf "\nPackage statistic:\n\t%d installed\n\t%d purged\n\t%d added\n\t%d changed state\n\t%d changed version\n\n", installed, purged, added, state, version;
  
  if (purged == 0 && added == 0 && state == 0 && version == 0)
     exit 255

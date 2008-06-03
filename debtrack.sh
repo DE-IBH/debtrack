@@ -7,7 +7,7 @@
 
 . /etc/debtrack.conf
 
-echo "ABPSoft Debian Package Tracker v0.03"
+echo "ABPSoft Debian Package Tracker v0.05"
 echo ""
 
 if [ ! -d "$BIN" ]; then
