@@ -1,3 +1,9 @@
+debtrack (0.05-1) unstable; urgency=low
+
+  * Removed non-empty .dcp file.
+
+ -- Thomas Liske <liske@ibh.de>  Mon, 02 Jun 2008 17:21:41 +0200
+
 debtrack (0.05) unstable; urgency=low
 
   * Post report and set checkpoints only if something has changed!
