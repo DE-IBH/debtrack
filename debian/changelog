@@ -1,3 +1,9 @@
+debtrack (0.06) unstable; urgency=low
+
+  * Use environment variable MAINTAINER as default value.
+
+ -- Thomas Liske <liske@ibh.de>  Mon, 16 Jun 2008 16:35:08 +0200
+
 debtrack (0.05-1) unstable; urgency=low
 
   * Removed non-empty .dcp file.

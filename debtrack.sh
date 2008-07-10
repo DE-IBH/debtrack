@@ -30,8 +30,11 @@ echo -n "Post a report? [Y/n]: "
 read yn
 
 if [ -z "$yn" -o "$yn" = "y" -o "$yn" = "Y" ]; then
- echo -n "Maintainer name? []: "
+ echo -n "Maintainer name? [$MAINTAINER]: "
  read mname
+ if [ -z "mname" ]; then
+  mname="$MAINTAINER"
+ fi
  echo -n "Statement? [Regular security update]: "
  read stmt
  if [ -z "$stmt" ]; then
