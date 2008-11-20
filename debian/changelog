@@ -1,3 +1,9 @@
+debtrack (0.07-r28) unstable; urgency=low
+
+  * Fix typo.
+
+ -- Thomas Liske <liske@ibh.de>  Thu, 20 Nov 2008 08:22:48 +0100
+
 debtrack (0.07-r25) unstable; urgency=low
 
   * Dependencies changed.

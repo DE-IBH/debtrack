@@ -23,7 +23,7 @@ if [ -x /usr/bin/imvirt ]; then
 echo Machine: `/usr/bin/imvirt`
 echo ""
 fi
-if [ -d /proc/bus/pci && -x /usr/bin/lspci ]; then
+if [ -d /proc/bus/pci -a -x /usr/bin/lspci ]; then
 lspci
 echo ""
 fi
