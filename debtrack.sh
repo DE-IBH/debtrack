@@ -32,7 +32,7 @@ read yn
 if [ -z "$yn" -o "$yn" = "y" -o "$yn" = "Y" ]; then
  echo -n "Maintainer name? [$MAINTAINER]: "
  read mname
- if [ -z "mname" ]; then
+ if [ -z "$mname" ]; then
   mname="$MAINTAINER"
  fi
  echo -n "Statement? [Regular security update]: "
