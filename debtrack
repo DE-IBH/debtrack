@@ -1,0 +1,3 @@
+#!/bin/sh
+
+su debtrack -c /usr/lib/debtrack/debtrack.sh
