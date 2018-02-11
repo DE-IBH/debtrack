@@ -1,3 +1,11 @@
+debtrack (0.08) unstable; urgency=low
+
+  * Changes:
+    - update output of show-tech-support.sh
+    - make cron report mails configurable (disabled by default)
+
+ -- Thomas Liske <liske@ibh.de>  Sun, 11 Feb 2018 16:07:55 +0100
+
 debtrack (0.07-r29) unstable; urgency=low
 
   * The default value for MAINTAINER was never used due a missing $.
