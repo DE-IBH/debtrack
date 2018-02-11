@@ -1,36 +1,54 @@
-#!/bin/bash
-#
-# $Id$
-#
-# Addition to debtrack by keil/IBH
-#
-# 
-#
-DATE=`date +"%Y-%m-%d"`
-#
-echo ""
-echo "What's inside this host as of $DATE:"
-echo ""
-echo Hostname: `hostname -f`
-echo ""
-echo Kernel: `uname -a`
-echo ""
-echo Debian Version: `cat /etc/debian_version`
-echo ""
-echo Uptime: `uptime`
-echo ""
+#!/bin/sh
+
+cat << EOH
+
+What's inside this host:
+
+Timestamp: $(date -R)
+Uptime   :$(uptime)
+Hostname : $(hostname -f)
+Debian   : $(cat /etc/debian_version)
+Kernel   : $(uname -a)
+EOH
+
 if [ -x /usr/bin/imvirt ]; then
-echo Machine: `/usr/bin/imvirt`
-echo ""
+    echo "Machine  : $(/usr/bin/imvirt 2> /dev/null)"
 fi
-if [ -d /proc/bus/pci -a -x /usr/bin/lspci ]; then
-lspci
-echo ""
-fi
+
+echo
+echo
+echo "# CPU"
 cat /proc/cpuinfo
+
+echo
+echo "# Memory"
 cat /proc/meminfo
-echo ""
-df -k
-echo ""
+
+if [ -d /proc/bus/pci -a -x /usr/bin/lspci ]; then
+    echo
+    echo
+    echo "# PCI Devices"
+    lspci
+fi
+
+if [ -d /sys/bus/usb -a -x /usr/bin/lsusb ]; then
+    echo
+    echo
+    echo "# USB Devices"
+    lsusb
+fi
+
+echo
+echo
+echo "# Block Devices"
+lsblk -fit
+
+echo
+echo
+echo "# FS Mounts"
 mount
-echo ""
+
+echo
+echo
+echo "# FS Usages"
+df -h
