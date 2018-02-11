@@ -35,7 +35,7 @@ if grep "Inst" "$UPG" > /dev/null ; then
 fi
 
 # Aything to send?
-if [ -s "$LOG" ] ; then
+if [ -s "$LOG" -a "$REPORT" = "true" ] ; then
  (
   echo "DebTrack AutoUpdate Notification for $HOST $DATE"
   echo ""

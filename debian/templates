@@ -15,3 +15,9 @@ Type: boolean
 Default: true
 Description: Use apt hooks?
  Should debtrack run after installing packages with apt automaticly?
+
+Template: debtrack/report
+Type: boolean
+Default: false
+Description: Report pending upgrades?
+ Should debtrack run verbose and report upgrades via mail in it's cronjob?
