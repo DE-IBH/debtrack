@@ -30,12 +30,16 @@ case "$1" in
 	db_get debtrack/apt
 	APTHOOK="$RET"
 
+	db_get debtrack/report
+	REPORT="$RET"
+
 
 	mv "$CFG" "$CFG".dpkg-save
 	cat "$CFG".dpkg-save | \
 	    sed -e "s/^MDST=.*$/MDST=\"$MDST\"/" | \
 	    sed -e "s/^DOWNLOAD=.*$/DOWNLOAD=\"$DOWNLOAD\"/" | \
 	    sed -e "s/^APTHOOK=.*$/APTHOOK=\"$APTHOOK\"/" > \
+	    sed -e "s/^REPORT=.*$/REPORT=\"$REPORT\"/" > \
 	    "$CFG"
     ;;
 
